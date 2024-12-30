@@ -4,24 +4,25 @@ import numpy as np
 import pickle
 import json
 import random
-from keras.models import load_model
+from keras import models
 
+nltk.download('punkt_tab')
+nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
+model = models.load_model('D:\\Dual-edge-defence-and-offensive-cyber-intelligence\\attack\\chatbot_model.h5')
 
-model = load_model('chatbot_model.h5')
 
+words = pickle.load(open('D:\\Dual-edge-defence-and-offensive-cyber-intelligence\\attack\\words.pkl', 'rb'))
+classes = pickle.load(open('D:\\Dual-edge-defence-and-offensive-cyber-intelligence\\attack\\classes.pkl', 'rb'))
 
-words = pickle.load(open('attack\\words.pkl', 'rb'))
-classes = pickle.load(open('attack\\classes.pkl', 'rb'))
-
-with open('attack\\intents.json') as json_data:
+with open('D:\\Dual-edge-defence-and-offensive-cyber-intelligence\\attack\\intents.json') as json_data:
     intents = json.load(json_data)
 
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
-    return sentence_words
+    return sentence_words   
 
 def bow(sentence, words, show_details=True):
     sentence_words = clean_up_sentence(sentence)
